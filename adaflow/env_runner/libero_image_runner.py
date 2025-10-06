@@ -305,7 +305,7 @@ class LIBEROImageRunner(BaseImageRunner):
         for i in range(n_envs): 
             video_path = self.video_file_names[i]
             if video_path is not None:
-                sim_video = wandb.Video(video_path)
+                sim_video = wandb.Video(video_path, format='mp4')
                 log_data[prefix+f'sim_video_{seed}'] = sim_video
         
         log_data["test/mean_score"] = num_success / n_inits

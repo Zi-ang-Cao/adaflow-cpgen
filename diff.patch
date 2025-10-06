@@ -1,0 +1,53 @@
+diff --git a/adaflow/config/task/three_piece_assembly_image_abs.yaml b/adaflow/config/task/three_piece_assembly_image_abs.yaml
+index 567c5c6..af72309 100644
+--- a/adaflow/config/task/three_piece_assembly_image_abs.yaml
++++ b/adaflow/config/task/three_piece_assembly_image_abs.yaml
+@@ -19,10 +19,10 @@ shape_meta: &shape_meta
+   action: 
+     shape: [10]
+ 
+-task_name: &task_name 3pa
++task_name: &task_name ThreePieceAssemblyWide
+ dataset_type: &dataset_type ph
+ 
+-dataset_path: &dataset_path path/to/3pa_image_abs.hdf5
++dataset_path: &dataset_path /home/ziangc/03_CodeBases/algo_steering/baselines/data_from_cpgen/ThreePieceAssemblyWide/E73-original-action-noisy-state-action-std-0.03-rgb-84-84.hdf5
+ abs_action: &abs_action True
+ 
+ env_runner:
+diff --git a/adaflow/env_runner/libero_image_runner.py b/adaflow/env_runner/libero_image_runner.py
+index 4e376db..e1e85e5 100644
+--- a/adaflow/env_runner/libero_image_runner.py
++++ b/adaflow/env_runner/libero_image_runner.py
+@@ -305,7 +305,7 @@ class LIBEROImageRunner(BaseImageRunner):
+         for i in range(n_envs): 
+             video_path = self.video_file_names[i]
+             if video_path is not None:
+-                sim_video = wandb.Video(video_path)
++                sim_video = wandb.Video(video_path, format='mp4')
+                 log_data[prefix+f'sim_video_{seed}'] = sim_video
+         
+         log_data["test/mean_score"] = num_success / n_inits
+diff --git a/adaflow/env_runner/robomimic_image_runner.py b/adaflow/env_runner/robomimic_image_runner.py
+index 0b47e70..61bea33 100644
+--- a/adaflow/env_runner/robomimic_image_runner.py
++++ b/adaflow/env_runner/robomimic_image_runner.py
+@@ -448,7 +448,7 @@ class RobomimicImageRunner(BaseImageRunner):
+             # visualize sim
+             video_path = all_video_paths[i]
+             if video_path is not None:
+-                sim_video = wandb.Video(video_path)
++                sim_video = wandb.Video(video_path, format='mp4')
+                 log_data[prefix+f'sim_video_{seed}'] = sim_video
+         
+         # log aggregate metrics
+@@ -459,6 +459,9 @@ class RobomimicImageRunner(BaseImageRunner):
+ 
+         return log_data
+ 
++    def close(self):
++        self.env.close()
++
+     def undo_transform_action(self, action):
+         raw_shape = action.shape
+         if raw_shape[-1] == 20:

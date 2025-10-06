@@ -19,10 +19,10 @@ shape_meta: &shape_meta
   action: 
     shape: [10]
 
-task_name: &task_name 3pa
+task_name: &task_name ThreePieceAssemblyWide
 dataset_type: &dataset_type ph
 
-dataset_path: &dataset_path path/to/3pa_image_abs.hdf5
+dataset_path: &dataset_path /home/ziangc/03_CodeBases/algo_steering/baselines/data_from_cpgen/ThreePieceAssemblyWide/E73-original-action-noisy-state-action-std-0.03-rgb-84-84.hdf5
 abs_action: &abs_action True
 
 env_runner:

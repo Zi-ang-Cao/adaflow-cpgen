@@ -448,7 +448,7 @@ class RobomimicImageRunner(BaseImageRunner):
             # visualize sim
             video_path = all_video_paths[i]
             if video_path is not None:
-                sim_video = wandb.Video(video_path)
+                sim_video = wandb.Video(video_path, format='mp4')
                 log_data[prefix+f'sim_video_{seed}'] = sim_video
         
         # log aggregate metrics
@@ -458,6 +458,9 @@ class RobomimicImageRunner(BaseImageRunner):
             log_data[name] = value
 
         return log_data
+
+    def close(self):
+        self.env.close()
 
     def undo_transform_action(self, action):
         raw_shape = action.shape
