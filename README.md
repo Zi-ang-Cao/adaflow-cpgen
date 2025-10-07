@@ -51,6 +51,10 @@ Then, run:
 
 ```bash
 HYDRA_FULL_ERROR=1 python train.py --config-name=train_diffusion_unet_ddpm_image_workspace_robomimic task=square_image_abs task.dataset_type=ph
+
+
+
+export CUDA_VISIBLE_DEVICES=3; HYDRA_FULL_ERROR=1 python train.py --config-name=train_diffusion_unet_ddpm_image_workspace_robomimic task=three_piece_assembly_image_abs task.dataset_type=ph
 ```
 
 **3.** Policy evaluation
