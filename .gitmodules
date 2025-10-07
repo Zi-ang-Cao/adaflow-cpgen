@@ -1,0 +1,16 @@
+[submodule "third_party/robomimic"]
+	path = third_party/robomimic
+	url = git@github.com:Zi-ang-Cao/robomimic.git
+	branch = cpgen_2510
+[submodule "third_party/robosuite"]
+	path = third_party/robosuite
+	url = git@github.com:Zi-ang-Cao/robosuite.git
+	branch = cpgen_2510
+[submodule "third_party/mimicgen"]
+	path = third_party/mimicgen
+	url = git@github.com:Zi-ang-Cao/mimicgen.git
+	branch = cpgen_2510
+[submodule "third_party/cpgen-envs"]
+	path = third_party/cpgen-envs
+	url = git@github.com:Zi-ang-Cao/cpgen-envs.git
+	branch = main
